@@ -8,7 +8,7 @@ def get_battery_status():
             if battery is None:
                 return "You don't have a battery. Are you a desktop user?" # are you?
             status = "Charging" if battery.power_plugged else "Discharging"
-            return f"Battery: {battery.percent}%, {status}"
+            return f"{battery.percent}%, {status}"
         else:
             return "CONTACT DEV WITH ERRCODE: battery_info_threw_exception_unsupported_platform"
     except Exception:

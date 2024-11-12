@@ -9,8 +9,8 @@ def get_wm():
         except KeyError:
             return 'CONTACT DEV WITH ERRCODE: de_wm_threw_exception'
     elif platform.system() == 'Windows':
-        return 'Windows shell'
+        return 'Windows Explorer'
     elif platform.system() == 'Darwin':
-        return 'macOS shell'
+        return 'Finder'
     else:
         return 'CONTACT DEV WITH ERRCODE: de_wm_threw_exception_unsupported_platform'

@@ -1,4 +1,3 @@
-import os
 import platform
 
 def get_pc_model():
@@ -6,11 +5,18 @@ def get_pc_model():
 
     try:
         if system == "Windows":
-            return os.popen("wmic csproduct get name").read().splitlines()[1].strip()
+            import subprocess
+            result = subprocess.run(["wmic", "csproduct", "get", "name"], capture_output=True, text=True)
+            # Split lines and filter out empty lines
+            lines = [line.strip() for line in result.stdout.splitlines() if line.strip()]
+            # Return the first non-header line if available
+            return lines[1] if len(lines) > 1 else "CONTACT DEV WITH ERRCODE: pc_model_threw_exception"
         elif system == "Linux":
             with open("/sys/devices/virtual/dmi/id/product_name", "r") as f:
                 return f.read().strip()
         elif system == "Darwin": # macos
-            return os.popen("sysctl -n hw.model").read().strip()
+            import subprocess
+            result = subprocess.run(["sysctl", "-n", "hw.model"], capture_output=True, text=True)
+            return result.stdout.strip()
     except Exception:
         return "CONTACT DEV WITH ERRCODE: pc_model_threw_exception_unsupported_platform"

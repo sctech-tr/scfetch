@@ -1,4 +1,4 @@
-import os
+import platform
 
 def get_machine_name():
-    return os.uname().nodename
+    return platform.uname().node
