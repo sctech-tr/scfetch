@@ -1,0 +1,36 @@
+[project]
+name = "scfetch"
+version = "1.0.1"
+description = "the ultimate successor to neofetch"
+authors = [
+    { name = "sctech", email = "gamerselimiko@gmail.com" }
+]
+dependencies = [
+    "colorist",
+    "psutil",
+    "screeninfo",
+    "requests",
+]
+requires-python = ">=3.12"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent"
+]
+readme = "README.md"
+urls = { homepage = "https://github.com/sctech-tr/scfetch" }
+
+[project.scripts]
+scfetch = "scfetch.__main__:main"
+
+[project.optional-dependencies]
+dev = ["pytest", "black"]
+docs = ["sphinx"]
+
+[tool.setuptools]
+packages = ["scfetch"]
+include-package-data = true
+
+[tool.setuptools.package-data]
+"scfetch" = ["data/*.json", "config/*.ini"]
