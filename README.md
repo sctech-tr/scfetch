@@ -24,6 +24,7 @@ scfetch
 - cpu
 - gpu
 - ram
+- de/wm
 - battery
 - disk usage
 - python version

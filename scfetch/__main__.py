@@ -23,6 +23,7 @@ from .screen_resolution import get_screen_resolution
 from .disk_usage import get_disk_usage
 from .battery import get_battery_status
 from .locale_info import get_locale
+from .de_wm import get_wm
 
 # --- END RANDOM IMPORTS NO ONE READS ---
 
@@ -41,6 +42,7 @@ def main():
     print(f"{Effect.BOLD}{Color.CYAN}CPU{Color.OFF}{Effect.OFF}:              {get_cpu_info()}")
     print(f"{Effect.BOLD}{Color.CYAN}GPU{Color.OFF}{Effect.OFF}:              {get_gpu_info()}")
     print(f"{Effect.BOLD}{Color.CYAN}RAM{Color.OFF}{Effect.OFF}:              {get_ram()}")
+    print(f"{Effect.BOLD}{Color.CYAN}DE/WM{Color.OFF}{Effect.OFF}:            {get_wm()}")
     print(f"{Effect.BOLD}{Color.CYAN}Battery{Color.OFF}{Effect.OFF}:          {get_battery_status()}")
     print(f"{Effect.BOLD}{Color.CYAN}Disk Usage{Color.OFF}{Effect.OFF}:       {get_disk_usage()}")
     print(f"{Effect.BOLD}{Color.CYAN}Python Version{Color.OFF}{Effect.OFF}:   {get_python_version()}")
