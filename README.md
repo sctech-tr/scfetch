@@ -33,6 +33,17 @@ scfetch
 - public ip
 - mac address
 - colored bar to identify terminal colors
+## config
+define custom theme colors in ~/.config/scfetch.json  
+available colors: red, green, yellow, blue, magenta, cyan, white
+```json
+{"color": "cyan"}
+```
+## public todo
+- [ ] add parameters for colors
+- [ ] hide/show for each field via config file
+- [ ] update detection
+- [ ] website
 ## example output
 ### on linux:
 ```
