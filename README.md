@@ -44,6 +44,7 @@ available colors: red, green, yellow, blue, magenta, cyan, white
 - [ ] hide/show for each field via config file
 - [ ] update detection
 - [ ] website
+- [ ] distro ascii art (low priority)
 ## example output
 ### on linux:
 ```
