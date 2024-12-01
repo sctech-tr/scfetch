@@ -1,7 +1,7 @@
 [project]
 name = "scfetch"
-version = "1.8.0"
-description = "the ultimate successor to neofetch"
+version = "2.0.0"
+description = "minimal fetch program for windows, linux and macos"
 authors = [
     { name = "sctech", email = "gamerselimiko@gmail.com" }
 ]
@@ -15,18 +15,25 @@ requires-python = ">=3.12"
 classifiers = [
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3 :: Only",
+    "Intended Audience :: End Users/Desktop",
+    "Intended Audience :: Developers",
+    "Natural Language :: English",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Topic :: System :: Operating System",
     "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent"
+    "Operating System :: Microsoft :: Windows :: Windows 10",
+    "Operating System :: Microsoft :: Windows :: Windows 11",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: MacOS",
 ]
 readme = "README.md"
-urls = { homepage = "https://github.com/sctech-tr/scfetch" }
+urls = { source = "https://github.com/sctech-tr/scfetch" }
 
 [project.scripts]
 scfetch = "scfetch.__main__:main"
-
-[project.optional-dependencies]
-dev = ["pytest", "black"]
-docs = ["sphinx"]
 
 [tool.setuptools]
 packages = ["scfetch"]

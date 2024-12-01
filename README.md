@@ -1,5 +1,5 @@
 # scfetch
-the ultimate successor to neofetch and betterfetch
+minimal fetch program written in python for linux, mac and windows.
 ## installation
 for latest release:
 ```bash
@@ -34,14 +34,21 @@ scfetch
 - public ip
 - mac address
 - colored bar to identify terminal colors
+## args
+- `--color`: specify the theme color. available colors: red, green, yellow, blue, magenta, cyan, white  
+example:
+```bash
+scfetch --color red
+```
 ## config
-define custom theme colors in ~/.config/scfetch.json  
+define custom theme colors in ~/.config/scfetch.json (~/scfetch.json for windows)
 available colors: red, green, yellow, blue, magenta, cyan, white
 ```json
 {"color": "cyan"}
 ```
 ## public todo
-- [ ] add parameters for colors
+- [x] add parameters for colors
 - [ ] hide/show for each field via config file
 - [ ] update detection
+- [x] better configuration handling
 - [x] distro ascii art (low priority)

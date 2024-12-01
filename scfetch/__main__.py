@@ -1,12 +1,16 @@
 # --- BEGIN RANDOM IMPORTS NO ONE READS ---
 
+# these are the imports for the arguments
+import argparse
+
 # these are the imports for the color and effects
 from colorist import Color, Effect
 
+# these are the imports for the ascii art
+from scfetch.ascii import define_ascii
+
 # these are the imports for the config
-import json
-import os
-import platform
+from scfetch.config import read_config
 
 # these are the imports for the fetch
 from scfetch.os_info import get_os_info
@@ -32,98 +36,25 @@ from scfetch.de_wm import get_wm
 
 # --- END RANDOM IMPORTS NO ONE READS ---
 
-def define_ascii():
-    lines = []
-    if platform.system() == "Windows":
-        lines = [
-            f"{Color.BLUE}                    ....,,:;+ccllll  {Color.OFF}",
-            f"{Color.BLUE}     ...,,+:;  clllllllllllllllllll  {Color.OFF}",
-            f"{Color.BLUE},cclllllllllll  lllllllllllllllllll  {Color.OFF}",
-            f"{Color.BLUE}llllllllllllll  lllllllllllllllllll  {Color.OFF}",
-            f"{Color.BLUE}llllllllllllll  lllllllllllllllllll  {Color.OFF}",
-            f"{Color.BLUE}llllllllllllll  lllllllllllllllllll  {Color.OFF}",
-            f"{Color.BLUE}llllllllllllll  lllllllllllllllllll  {Color.OFF}",
-            f"{Color.BLUE}llllllllllllll  lllllllllllllllllll  {Color.OFF}",
-            f"{Color.BLUE}llllllllllllll  lllllllllllllllllll  {Color.OFF}",
-            f"{Color.BLUE}                                     {Color.OFF}",
-            f"{Color.BLUE}llllllllllllll  lllllllllllllllllll  {Color.OFF}",
-            f"{Color.BLUE}llllllllllllll  lllllllllllllllllll  {Color.OFF}",
-            f"{Color.BLUE}llllllllllllll  lllllllllllllllllll  {Color.OFF}",
-            f"{Color.BLUE}llllllllllllll  lllllllllllllllllll  {Color.OFF}",
-            f"{Color.BLUE}llllllllllllll  lllllllllllllllllll  {Color.OFF}",
-            f"{Color.BLUE}`'ccllllllllll  lllllllllllllllllll  {Color.OFF}",
-            f"{Color.BLUE}      `' ''*::  :ccllllllllllllllll  {Color.OFF}",
-            f"{Color.BLUE}                      ````'' *::cll  {Color.OFF}"
-        ]
-    elif platform.system() == "Linux":
-        lines = [
-            f"{Color.BLACK}            a8888b.         {Color.OFF}",
-            f"{Color.BLACK}          d888888b.         {Color.OFF}",
-            f"{Color.BLACK}          8P'YP'Y88         {Color.OFF}",
-            f"{Color.BLACK}          8|{Color.OFF}{Color.WHITE}O{Color.OFF}{Color.BLACK}||{Color.OFF}{Color.WHITE}O{Color.OFF}{Color.BLACK}|88         {Color.OFF}",
-            f"{Color.BLACK}          8{Color.OFF}{Color.YELLOW}'    .{Color.OFF}{Color.BLACK}88         {Color.OFF}",
-            f"{Color.BLACK}          8{Color.OFF}{Color.YELLOW}`._.'{Color.OFF}{Color.BLACK} Y8.        {Color.OFF}",
-            f"{Color.BLACK}        d/      `8b.        {Color.OFF}",
-            f"{Color.BLACK}      .dP   .     Y8b.      {Color.OFF}",
-            f"{Color.BLACK}      d8:'   '   `::88b.    {Color.OFF}",
-            f"{Color.BLACK}     d8'           `Y88b    {Color.OFF}",
-            f"{Color.BLACK}    :8P     '       :888    {Color.OFF}",
-            f"{Color.BLACK}     8a.    :      _a88P    {Color.OFF}",
-            f"{Color.BLACK}   {Color.OFF}{Color.YELLOW}._/'Y{Color.OFF}{Color.BLACK}aa_     :.{Color.OFF}{Color.YELLOW} -----    {Color.OFF}",
-            rf"{Color.BLACK}   {Color.OFF}{Color.YELLOW}\    YP'      `{Color.OFF}{Color.YELLOW}|     `.  {Color.OFF}",
-            rf"{Color.BLACK}   {Color.OFF}{Color.YELLOW}/     \.{Color.OFF}{Color.BLACK}_____.d{Color.OFF}{Color.YELLOW}|    {Color.OFF}{Color.YELLOW} .'  {Color.OFF}",
-            f"{Color.BLACK}   {Color.OFF}{Color.YELLOW}`--..__){Color.OFF}{Color.BLACK}888888P{Color.OFF}{Color.YELLOW}`._.'     {Color.OFF}",
-            f"{Color.BLACK}                            {Color.OFF}",
-            f"{Color.BLACK}                            {Color.OFF}"
-        ]
-    elif platform.system() == "Darwin":
-        lines = [
-            f"{Color.RED}              ___           {Color.OFF}",
-            f"{Color.RED}           ⢀⣴⣿⣿⡿           {Color.OFF}",
-            f"{Color.RED}          ⢀⣾⣿⣿⠟⠁           {Color.OFF}",
-            f"{Color.RED}  ⢀⣠⣤⣤⣤⣀⣀⠈⠋⠉⣁⣠⣤⣤⣤⣀⡀      {Color.OFF}",
-            f"{Color.RED} ⢠⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦.   {Color.OFF}",
-            f"{Color.RED}⣠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠋⠀  {Color.OFF}",
-            f"{Color.RED}⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡏⠀⠀⠀  {Color.OFF}",
-            f"{Color.RED}⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀  {Color.OFF}",
-            f"{Color.RED}⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⠀⠀⠀  {Color.OFF}",
-            f"{Color.RED}⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣤⣀  {Color.OFF}",
-            f"{Color.RED} ⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠁  {Color.OFF}",
-            f"{Color.RED}  ⠙⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠁⠀  {Color.OFF}",
-            f"{Color.RED}    ⠈⠙⢿⣿⣿⣿⠿⠟⠛⠻⠿⣿⣿⣿⡿⠋⠀⠀⠀ {Color.OFF}",
-            f"{Color.RED}                           {Color.OFF}",
-            f"{Color.RED}                           {Color.OFF}",
-            f"{Color.RED}                           {Color.OFF}",
-            f"{Color.RED}                           {Color.OFF}",
-            f"{Color.RED}                           {Color.OFF}"
-        ]
-    return lines
-
 # real fetch
 def main():
+    # parse the arguments
+    parser = argparse.ArgumentParser(description="minimal fetch program")
+    parser.add_argument("--color", type=str, help="specify the theme color")
+    args = parser.parse_args()
 
-    # ascii art
+    # define the ascii art
     lines = define_ascii()
+    # read the config
+    config = read_config()
 
-    color_raw = "cyan"
-    config_paths = {
-        "Windows": "%USERPROFILE%/scfetch.json",
-        "Linux": "~/.config/scfetch.json",
-        "Darwin": "~/.config/scfetch.json"
-    }
-
-    config_path = os.path.expanduser(config_paths.get(platform.system(), ""))
-    if not config_path:
-        print("CONTACT DEV WITH ERRCODE: config_threw_exception_unsupported_os")
-        exit(1)
-
-    if not os.path.exists(config_path):
-        with open(config_path, "w") as f:
-            json.dump({"color": "cyan"}, f)
-    else:
-        with open(config_path, "r") as f:
-            color_raw = json.load(f).get("color", "cyan")
-
+    # get the color from the config or argument
+    if args.color:
+        color_raw = args.color
+    else: # if no argument, use the config
+        color_raw = config.get("color", "cyan")
+    
+    # map the color to the colorist color
     color_map = {
         "red": Color.RED,
         "yellow": Color.YELLOW,
@@ -135,7 +66,8 @@ def main():
     }
     color = color_map.get(color_raw, Color.CYAN)
 
-    # i had to test this a million times to get the space count working
+    # i had to test this a million times to get the space count working. still broken on windows and possibly macOS
+    # DONT CHANGE THE SPACES!!!!!!!!! IT WILL BREAK AND PYTHON WILL BLAME ME FOR MAKING AWFUL CODE!!!!!!!
     print(f"                            {Effect.BOLD}{color}{get_username()}{Color.OFF}{Effect.OFF}@{Effect.BOLD}{color}{get_machine_name()}{Color.OFF}{Effect.OFF}")
     print(f"                            {color}{'=' * 50}{Color.OFF}")
     print(f"{lines[0]}{Effect.BOLD}{color}OS{Color.OFF}{Effect.OFF}:               {get_os_info()}")
