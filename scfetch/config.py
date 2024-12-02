@@ -43,8 +43,14 @@ def read_config():
         
         return config
     
-    except (json.JSONDecodeError, PermissionError, OSError):
-        print(f"CONTACT DEV WITH ERRCODE: read_config_threw_exception_json_decode_permission_oserror_idklol")
+    except json.JSONDecodeError:
+        print(f"CONTACT DEV WITH ERRCODE: read_config_threw_exception_json_decode_error")
+        return default_config
+    except PermissionError:
+        print(f"CONTACT DEV WITH ERRCODE: read_config_threw_exception_permission_error")
+        return default_config
+    except OSError:
+        print(f"CONTACT DEV WITH ERRCODE: read_config_threw_exception_os_error")
         return default_config
     
 def write_config(config):

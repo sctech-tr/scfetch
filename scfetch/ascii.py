@@ -47,23 +47,24 @@ def define_ascii():
         ]
     elif platform.system() == "Darwin":
         lines = [
-            f"{Color.RED}              ___           {Color.OFF}",
-            f"{Color.RED}           ⢀⣴⣿⣿⡿           {Color.OFF}",
-            f"{Color.RED}          ⢀⣾⣿⣿⠟⠁           {Color.OFF}",
-            f"{Color.RED}  ⢀⣠⣤⣤⣤⣀⣀⠈⠋⠉⣁⣠⣤⣤⣤⣀⡀      {Color.OFF}",
-            f"{Color.RED} ⢠⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦.   {Color.OFF}",
-            f"{Color.RED}⣠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠋⠀  {Color.OFF}",
-            f"{Color.RED}⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡏⠀⠀⠀  {Color.OFF}",
-            f"{Color.RED}⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀  {Color.OFF}",
-            f"{Color.RED}⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⠀⠀⠀  {Color.OFF}",
-            f"{Color.RED}⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣤⣀  {Color.OFF}",
-            f"{Color.RED} ⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠁  {Color.OFF}",
-            f"{Color.RED}  ⠙⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠁⠀  {Color.OFF}",
-            f"{Color.RED}    ⠈⠙⢿⣿⣿⣿⠿⠟⠛⠻⠿⣿⣿⣿⡿⠋⠀⠀⠀ {Color.OFF}",
-            f"{Color.RED}                           {Color.OFF}",
-            f"{Color.RED}                           {Color.OFF}",
-            f"{Color.RED}                           {Color.OFF}",
-            f"{Color.RED}                           {Color.OFF}",
-            f"{Color.RED}                           {Color.OFF}"
+
+            f"{Color.RED}⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⠀⠀⠀⠀⠀⠀{Color.OFF}",
+            f"{Color.RED}⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⣿⣿⡿⠀⠀⠀⠀⠀⠀{Color.OFF}"
+            f"{Color.RED}⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣾⣿⣿⠟⠁⠀⠀⠀⠀⠀⠀{Color.OFF}"
+            f"{Color.RED}⠀⠀⠀⢀⣠⣤⣤⣤⣀⣀⠈⠋⠉⣁⣠⣤⣤⣤⣀⡀⠀⠀{Color.OFF}"
+            f"{Color.RED}⠀⢠⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⡀{Color.OFF}"
+            f"{Color.RED}⣠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠋⠀{Color.OFF}"
+            f"{Color.RED}⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡏⠀⠀⠀{Color.OFF}"
+            f"{Color.RED}⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀{Color.OFF}"
+            f"{Color.RED}⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⠀⠀⠀{Color.OFF}"
+            f"{Color.RED}⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣤⣀{Color.OFF}"
+            f"{Color.RED}⠀⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠁{Color.OFF}"
+            f"{Color.RED}⠀⠀⠙⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠁⠀{Color.OFF}"
+            f"{Color.RED}⠀⠀⠀⠈⠙⢿⣿⣿⣿⠿⠟⠛⠻⠿⣿⣿⣿⡿⠋⠀⠀⠀{Color.OFF}"
+            f"{Color.RED}                          {Color.OFF}"
+            f"{Color.RED}                          {Color.OFF}"
+            f"{Color.RED}                          {Color.OFF}"
+            f"{Color.RED}                          {Color.OFF}"
+            f"{Color.RED}                          {Color.OFF}"
         ]
     return lines

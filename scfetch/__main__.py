@@ -13,6 +13,7 @@ from scfetch.ascii import define_ascii
 from scfetch.config import read_config
 
 # these are the imports for the fetch
+import platform
 from scfetch.os_info import get_os_info
 from scfetch.python_version import get_python_version
 from scfetch.cpu import get_cpu_info
@@ -66,10 +67,17 @@ def main():
     }
     color = color_map.get(color_raw, Color.CYAN)
 
-    # i had to test this a million times to get the space count working. still broken on windows and possibly macOS
+    # i had to test this a million times to get the space count working. still broken on macOS :(
     # DONT CHANGE THE SPACES!!!!!!!!! IT WILL BREAK AND PYTHON WILL BLAME ME FOR MAKING AWFUL CODE!!!!!!!
-    print(f"                            {Effect.BOLD}{color}{get_username()}{Color.OFF}{Effect.OFF}@{Effect.BOLD}{color}{get_machine_name()}{Color.OFF}{Effect.OFF}")
-    print(f"                            {color}{'=' * 50}{Color.OFF}")
+    if platform.system() == "Linux":
+        print(f"                            {Effect.BOLD}{color}{get_username()}{Color.OFF}{Effect.OFF}@{Effect.BOLD}{color}{get_machine_name()}{Color.OFF}{Effect.OFF}")
+        print(f"                            {color}{'=' * 50}{Color.OFF}")
+    elif platform.system() == "Windows":
+        print(f"                                     {Effect.BOLD}{color}{get_username()}{Color.OFF}{Effect.OFF}@{Effect.BOLD}{color}{get_machine_name()}{Color.OFF}{Effect.OFF}")
+        print(f"                                     {color}{'=' * 50}{Color.OFF}")
+    elif platform.system() == "Darwin":
+        print(f"                          {Effect.BOLD}{color}{get_username()}{Color.OFF}{Effect.OFF}@{Effect.BOLD}{color}{get_machine_name()}{Color.OFF}{Effect.OFF}")
+        print(f"                          {color}{'=' * 50}{Color.OFF}")
     print(f"{lines[0]}{Effect.BOLD}{color}OS{Color.OFF}{Effect.OFF}:               {get_os_info()}")
     print(f"{lines[1]}{Effect.BOLD}{color}Host{Color.OFF}{Effect.OFF}:             {get_pc_model()}")
     print(f"{lines[2]}{Effect.BOLD}{color}Kernel{Color.OFF}{Effect.OFF}:           {get_kernel_ver()}")

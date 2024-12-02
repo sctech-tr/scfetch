@@ -48,7 +48,6 @@ available colors: red, green, yellow, blue, magenta, cyan, white
 ```
 ## public todo
 - [x] add parameters for colors
-- [ ] hide/show for each field via config file
-- [ ] update detection
-- [x] better configuration handling
+- [ ] add parameters for ascii art
+- [ ] update detection (get via pip)
 - [x] distro ascii art (low priority)
