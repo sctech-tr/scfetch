@@ -41,7 +41,7 @@ example:
 scfetch --color red
 ```
 ## config
-define custom theme colors in ~/.config/scfetch.json (~/scfetch.json for windows)
+define custom theme colors in `~/.config/scfetch.json` (`~/scfetch.json` for windows)
 available colors: red, green, yellow, blue, magenta, cyan, white
 ```json
 {"color": "cyan"}
