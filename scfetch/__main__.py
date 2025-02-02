@@ -42,10 +42,16 @@ def main():
     # parse the arguments
     parser = argparse.ArgumentParser(description="minimal fetch program for linux, windows and mac.")
     parser.add_argument("--color", type=str, help="specify the theme color")
+    parser.add_argument("--noascii", action="store_true", help="disable the ascii art")
     args = parser.parse_args()
 
-    # define the ascii art
-    lines = define_ascii()
+    # if the ascii art is enabled, define the ascii art
+    if not args.noascii:
+        # define the ascii art
+        lines = define_ascii()
+    else:
+        lines = [""] * 18
+
     # read the config
     config = read_config()
 
@@ -69,17 +75,21 @@ def main():
 
     # i had to test this a million times to get the space count working. still broken on macOS :(
     # DONT CHANGE THE SPACES!!!!!!!!! IT WILL BREAK AND PYTHON WILL BLAME ME FOR MAKING AWFUL CODE!!!!!!!
-    if platform.system() == "Linux":
-        print(f"                            {Effect.BOLD}{color}{get_username()}{Color.OFF}{Effect.OFF}@{Effect.BOLD}{color}{get_machine_name()}{Color.OFF}{Effect.OFF}")
-        print(f"                            {color}{'=' * 50}{Color.OFF}")
-    elif platform.system() == "Windows":
-        print(f"                                     {Effect.BOLD}{color}{get_username()}{Color.OFF}{Effect.OFF}@{Effect.BOLD}{color}{get_machine_name()}{Color.OFF}{Effect.OFF}")
-        print(f"                                     {color}{'=' * 50}{Color.OFF}")
-    elif platform.system() == "Darwin":
-        print(f"                          {Effect.BOLD}{color}{get_username()}{Color.OFF}{Effect.OFF}@{Effect.BOLD}{color}{get_machine_name()}{Color.OFF}{Effect.OFF}")
-        print(f"                          {color}{'=' * 50}{Color.OFF}")
+    if not args.noascii:
+        if platform.system() == "Linux":
+            print(f"                            {Effect.BOLD}{color}{get_username()}{Color.OFF}{Effect.OFF}@{Effect.BOLD}{color}{get_machine_name()}{Color.OFF}{Effect.OFF}")
+            print(f"                            {color}{'=' * 50}{Color.OFF}")
+        elif platform.system() == "Windows":
+            print(f"                                     {Effect.BOLD}{color}{get_username()}{Color.OFF}{Effect.OFF}@{Effect.BOLD}{color}{get_machine_name()}{Color.OFF}{Effect.OFF}")
+            print(f"                                     {color}{'=' * 50}{Color.OFF}")
+        elif platform.system() == "Darwin":
+            print(f"                          {Effect.BOLD}{color}{get_username()}{Color.OFF}{Effect.OFF}@{Effect.BOLD}{color}{get_machine_name()}{Color.OFF}{Effect.OFF}")
+            print(f"                          {color}{'=' * 50}{Color.OFF}")
+        else:
+            print("CONTACT DEV WITH ERRCODE: header_threw_exception_unsupported_os")
     else:
-        print("CONTACT DEV WITH ERRCODE: header_threw_exception_unsupported_os")
+        print(f"{Effect.BOLD}{color}{get_username()}{Color.OFF}{Effect.OFF}@{Effect.BOLD}{color}{get_machine_name()}{Color.OFF}{Effect.OFF}")
+        print(f"{color}{'=' * 50}{Color.OFF}")
     print(f"{lines[0]}{Effect.BOLD}{color}OS{Color.OFF}{Effect.OFF}:               {get_os_info()}")
     print(f"{lines[1]}{Effect.BOLD}{color}Host{Color.OFF}{Effect.OFF}:             {get_pc_model()}")
     print(f"{lines[2]}{Effect.BOLD}{color}Kernel{Color.OFF}{Effect.OFF}:           {get_kernel_ver()}")
@@ -98,16 +108,19 @@ def main():
     print(f"{lines[15]}{Effect.BOLD}{color}Local IP{Color.OFF}{Effect.OFF}:         {get_private_ip()}")
     print(f"{lines[16]}{Effect.BOLD}{color}Public IP{Color.OFF}{Effect.OFF}:        {get_public_ip()}")
     print(f"{lines[17]}{Effect.BOLD}{color}MAC Address{Color.OFF}{Effect.OFF}:      {get_mac_address()}")
-    if platform.system() == "Linux":
-        print(f"                            {Color.RED}■■■■{Color.OFF}{Color.YELLOW}■■■■{Color.OFF}{Color.GREEN}■■■■{Color.OFF}{Color.CYAN}■■■■{Color.OFF}{Color.BLUE}■■■■{Color.OFF}{Color.MAGENTA}■■■■{Color.OFF}{Color.BLUE}■■■■{Color.OFF}{Color.CYAN}■■■■{Color.OFF}{Color.GREEN}■■■■{Color.OFF}{Color.YELLOW}■■■■{Color.OFF}{Color.RED}■■■■{Color.OFF}")
-        print(f"                            {Color.RED}■■■■{Color.OFF}{Color.YELLOW}■■■■{Color.OFF}{Color.GREEN}■■■■{Color.OFF}{Color.CYAN}■■■■{Color.OFF}{Color.BLUE}■■■■{Color.OFF}{Color.MAGENTA}■■■■{Color.OFF}{Color.BLUE}■■■■{Color.OFF}{Color.CYAN}■■■■{Color.OFF}{Color.GREEN}■■■■{Color.OFF}{Color.YELLOW}■■■■{Color.OFF}{Color.RED}■■■■{Color.OFF}")
-    elif platform.system() == "Windows":
-        print(f"                                     {Color.RED}■■■■{Color.OFF}{Color.YELLOW}■■■■{Color.OFF}{Color.GREEN}■■■■{Color.OFF}{Color.CYAN}■■■■{Color.OFF}{Color.BLUE}■■■■{Color.OFF}{Color.MAGENTA}■■■■{Color.OFF}{Color.BLUE}■■■■{Color.OFF}{Color.CYAN}■■■■{Color.OFF}{Color.GREEN}■■■■{Color.OFF}{Color.YELLOW}■■■■{Color.OFF}{Color.RED}■■■■{Color.OFF}")
-        print(f"                                     {Color.RED}■■■■{Color.OFF}{Color.YELLOW}■■■■{Color.OFF}{Color.GREEN}■■■■{Color.OFF}{Color.CYAN}■■■■{Color.OFF}{Color.BLUE}■■■■{Color.OFF}{Color.MAGENTA}■■■■{Color.OFF}{Color.BLUE}■■■■{Color.OFF}{Color.CYAN}■■■■{Color.OFF}{Color.GREEN}■■■■{Color.OFF}{Color.YELLOW}■■■■{Color.OFF}{Color.RED}■■■■{Color.OFF}")
-    elif platform.system() == "Darwin":
-        print(f"                          {Color.RED}■■■■{Color.OFF}{Color.YELLOW}■■■■{Color.OFF}{Color.GREEN}■■■■{Color.OFF}{Color.CYAN}■■■■{Color.OFF}{Color.BLUE}■■■■{Color.OFF}{Color.MAGENTA}■■■■{Color.OFF}{Color.BLUE}■■■■{Color.OFF}{Color.CYAN}■■■■{Color.OFF}{Color.GREEN}■■■■{Color.OFF}{Color.YELLOW}■■■■{Color.OFF}{Color.RED}■■■■{Color.OFF}")
-        print(f"                          {Color.RED}■■■■{Color.OFF}{Color.YELLOW}■■■■{Color.OFF}{Color.GREEN}■■■■{Color.OFF}{Color.CYAN}■■■■{Color.OFF}{Color.BLUE}■■■■{Color.OFF}{Color.MAGENTA}■■■■{Color.OFF}{Color.BLUE}■■■■{Color.OFF}{Color.CYAN}■■■■{Color.OFF}{Color.GREEN}■■■■{Color.OFF}{Color.YELLOW}■■■■{Color.OFF}{Color.RED}■■■■{Color.OFF}")
+    if not args.noascii:
+        if platform.system() == "Linux":
+            print(f"                            {Color.RED}■■■■{Color.OFF}{Color.YELLOW}■■■■{Color.OFF}{Color.GREEN}■■■■{Color.OFF}{Color.CYAN}■■■■{Color.OFF}{Color.BLUE}■■■■{Color.OFF}{Color.MAGENTA}■■■■{Color.OFF}{Color.BLUE}■■■■{Color.OFF}{Color.CYAN}■■■■{Color.OFF}{Color.GREEN}■■■■{Color.OFF}{Color.YELLOW}■■■■{Color.OFF}{Color.RED}■■■■{Color.OFF}")
+            print(f"                            {Color.RED}■■■■{Color.OFF}{Color.YELLOW}■■■■{Color.OFF}{Color.GREEN}■■■■{Color.OFF}{Color.CYAN}■■■■{Color.OFF}{Color.BLUE}■■■■{Color.OFF}{Color.MAGENTA}■■■■{Color.OFF}{Color.BLUE}■■■■{Color.OFF}{Color.CYAN}■■■■{Color.OFF}{Color.GREEN}■■■■{Color.OFF}{Color.YELLOW}■■■■{Color.OFF}{Color.RED}■■■■{Color.OFF}")
+        elif platform.system() == "Windows":
+            print(f"                                     {Color.RED}■■■■{Color.OFF}{Color.YELLOW}■■■■{Color.OFF}{Color.GREEN}■■■■{Color.OFF}{Color.CYAN}■■■■{Color.OFF}{Color.BLUE}■■■■{Color.OFF}{Color.MAGENTA}■■■■{Color.OFF}{Color.BLUE}■■■■{Color.OFF}{Color.CYAN}■■■■{Color.OFF}{Color.GREEN}■■■■{Color.OFF}{Color.YELLOW}■■■■{Color.OFF}{Color.RED}■■■■{Color.OFF}")
+            print(f"                                     {Color.RED}■■■■{Color.OFF}{Color.YELLOW}■■■■{Color.OFF}{Color.GREEN}■■■■{Color.OFF}{Color.CYAN}■■■■{Color.OFF}{Color.BLUE}■■■■{Color.OFF}{Color.MAGENTA}■■■■{Color.OFF}{Color.BLUE}■■■■{Color.OFF}{Color.CYAN}■■■■{Color.OFF}{Color.GREEN}■■■■{Color.OFF}{Color.YELLOW}■■■■{Color.OFF}{Color.RED}■■■■{Color.OFF}")
+        elif platform.system() == "Darwin":
+            print(f"                          {Color.RED}■■■■{Color.OFF}{Color.YELLOW}■■■■{Color.OFF}{Color.GREEN}■■■■{Color.OFF}{Color.CYAN}■■■■{Color.OFF}{Color.BLUE}■■■■{Color.OFF}{Color.MAGENTA}■■■■{Color.OFF}{Color.BLUE}■■■■{Color.OFF}{Color.CYAN}■■■■{Color.OFF}{Color.GREEN}■■■■{Color.OFF}{Color.YELLOW}■■■■{Color.OFF}{Color.RED}■■■■{Color.OFF}")
+            print(f"                          {Color.RED}■■■■{Color.OFF}{Color.YELLOW}■■■■{Color.OFF}{Color.GREEN}■■■■{Color.OFF}{Color.CYAN}■■■■{Color.OFF}{Color.BLUE}■■■■{Color.OFF}{Color.MAGENTA}■■■■{Color.OFF}{Color.BLUE}■■■■{Color.OFF}{Color.CYAN}■■■■{Color.OFF}{Color.GREEN}■■■■{Color.OFF}{Color.YELLOW}■■■■{Color.OFF}{Color.RED}■■■■{Color.OFF}")
+        else:
+            print("CONTACT DEV WITH ERRCODE: footer_threw_exception_unsupported_os")
     else:
-        print("CONTACT DEV WITH ERRCODE: footer_threw_exception_unsupported_os")
+        print(f"{Color.RED}■■■■{Color.OFF}{Color.YELLOW}■■■■{Color.OFF}{Color.GREEN}■■■■{Color.OFF}{Color.CYAN}■■■■{Color.OFF}{Color.BLUE}■■■■{Color.OFF}{Color.MAGENTA}■■■■{Color.OFF}{Color.BLUE}■■■■{Color.OFF}{Color.CYAN}■■■■{Color.OFF}{Color.GREEN}■■■■{Color.OFF}{Color.YELLOW}■■■■{Color.OFF}{Color.RED}■■■■{Color.OFF}")
 if __name__ == "__main__":
     main()
