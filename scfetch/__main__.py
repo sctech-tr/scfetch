@@ -40,7 +40,7 @@ from scfetch.de_wm import get_wm
 # real fetch
 def main():
     # parse the arguments
-    parser = argparse.ArgumentParser(description="minimal fetch program")
+    parser = argparse.ArgumentParser(description="minimal fetch program for linux, windows and mac.")
     parser.add_argument("--color", type=str, help="specify the theme color")
     args = parser.parse_args()
 
@@ -79,7 +79,7 @@ def main():
         print(f"                          {Effect.BOLD}{color}{get_username()}{Color.OFF}{Effect.OFF}@{Effect.BOLD}{color}{get_machine_name()}{Color.OFF}{Effect.OFF}")
         print(f"                          {color}{'=' * 50}{Color.OFF}")
     else:
-        print("CONTACT DEV WITH ERRCODE: usernameathost_threw_exception_unsupported_os")
+        print("CONTACT DEV WITH ERRCODE: header_threw_exception_unsupported_os")
     print(f"{lines[0]}{Effect.BOLD}{color}OS{Color.OFF}{Effect.OFF}:               {get_os_info()}")
     print(f"{lines[1]}{Effect.BOLD}{color}Host{Color.OFF}{Effect.OFF}:             {get_pc_model()}")
     print(f"{lines[2]}{Effect.BOLD}{color}Kernel{Color.OFF}{Effect.OFF}:           {get_kernel_ver()}")
