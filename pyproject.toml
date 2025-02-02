@@ -1,6 +1,6 @@
 [project]
 name = "scfetch"
-version = "2.3.0"
+version = "2.3.1"
 description = "minimal fetch program for windows, linux and macos"
 authors = [
     { name = "sctech", email = "gamerselimiko@gmail.com" }

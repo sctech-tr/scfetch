@@ -111,12 +111,9 @@ def main():
     if not args.noascii:
         if platform.system() == "Linux":
             print(f"                            {Color.RED}■■■■{Color.OFF}{Color.YELLOW}■■■■{Color.OFF}{Color.GREEN}■■■■{Color.OFF}{Color.CYAN}■■■■{Color.OFF}{Color.BLUE}■■■■{Color.OFF}{Color.MAGENTA}■■■■{Color.OFF}{Color.BLUE}■■■■{Color.OFF}{Color.CYAN}■■■■{Color.OFF}{Color.GREEN}■■■■{Color.OFF}{Color.YELLOW}■■■■{Color.OFF}{Color.RED}■■■■{Color.OFF}")
-            print(f"                            {Color.RED}■■■■{Color.OFF}{Color.YELLOW}■■■■{Color.OFF}{Color.GREEN}■■■■{Color.OFF}{Color.CYAN}■■■■{Color.OFF}{Color.BLUE}■■■■{Color.OFF}{Color.MAGENTA}■■■■{Color.OFF}{Color.BLUE}■■■■{Color.OFF}{Color.CYAN}■■■■{Color.OFF}{Color.GREEN}■■■■{Color.OFF}{Color.YELLOW}■■■■{Color.OFF}{Color.RED}■■■■{Color.OFF}")
         elif platform.system() == "Windows":
             print(f"                                     {Color.RED}■■■■{Color.OFF}{Color.YELLOW}■■■■{Color.OFF}{Color.GREEN}■■■■{Color.OFF}{Color.CYAN}■■■■{Color.OFF}{Color.BLUE}■■■■{Color.OFF}{Color.MAGENTA}■■■■{Color.OFF}{Color.BLUE}■■■■{Color.OFF}{Color.CYAN}■■■■{Color.OFF}{Color.GREEN}■■■■{Color.OFF}{Color.YELLOW}■■■■{Color.OFF}{Color.RED}■■■■{Color.OFF}")
-            print(f"                                     {Color.RED}■■■■{Color.OFF}{Color.YELLOW}■■■■{Color.OFF}{Color.GREEN}■■■■{Color.OFF}{Color.CYAN}■■■■{Color.OFF}{Color.BLUE}■■■■{Color.OFF}{Color.MAGENTA}■■■■{Color.OFF}{Color.BLUE}■■■■{Color.OFF}{Color.CYAN}■■■■{Color.OFF}{Color.GREEN}■■■■{Color.OFF}{Color.YELLOW}■■■■{Color.OFF}{Color.RED}■■■■{Color.OFF}")
         elif platform.system() == "Darwin":
-            print(f"                          {Color.RED}■■■■{Color.OFF}{Color.YELLOW}■■■■{Color.OFF}{Color.GREEN}■■■■{Color.OFF}{Color.CYAN}■■■■{Color.OFF}{Color.BLUE}■■■■{Color.OFF}{Color.MAGENTA}■■■■{Color.OFF}{Color.BLUE}■■■■{Color.OFF}{Color.CYAN}■■■■{Color.OFF}{Color.GREEN}■■■■{Color.OFF}{Color.YELLOW}■■■■{Color.OFF}{Color.RED}■■■■{Color.OFF}")
             print(f"                          {Color.RED}■■■■{Color.OFF}{Color.YELLOW}■■■■{Color.OFF}{Color.GREEN}■■■■{Color.OFF}{Color.CYAN}■■■■{Color.OFF}{Color.BLUE}■■■■{Color.OFF}{Color.MAGENTA}■■■■{Color.OFF}{Color.BLUE}■■■■{Color.OFF}{Color.CYAN}■■■■{Color.OFF}{Color.GREEN}■■■■{Color.OFF}{Color.YELLOW}■■■■{Color.OFF}{Color.RED}■■■■{Color.OFF}")
         else:
             print("CONTACT DEV WITH ERRCODE: footer_threw_exception_unsupported_os")
